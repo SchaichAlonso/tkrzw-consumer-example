@@ -10,6 +10,7 @@ jobs:
     strategy:
       matrix:
         buildtype: [debug, release]
+        triplet: [x64-windows-static, x64-linux]
         include:
          - triplet: x64-windows-static
            runs-on: windows-latest
