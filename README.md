@@ -1,5 +1,5 @@
 # tkrzw-consumer-example
-This project uses vcpkg to provision SchaichAlonso/tkrzw@3653a70a3a8d02d39cb2e087d057e4159ad86f2a and then builds/runs/bundles the examples that are part of the upstream tkrzw project against vcpkg's tkrzw.
+This project uses vcpkg to provision [tkrzw](https://github.com/estraier/tkrzw) and then builds/runs/bundles the examples that are part of the upstream tkrzw project against the vcpkg deployed tkrzw.
 
 Run 
   
