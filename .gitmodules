@@ -1,0 +1,9 @@
+[submodule "vcpkg"]
+	path = vcpkg
+	url = https://github.com/microsoft/vcpkg
+[submodule "vcpkg-overlay-ports/tkrzw-vcpkg-overlay"]
+	path = vcpkg-overlay-ports/tkrzw-vcpkg-overlay
+	url = https://github.com/SchaichAlonso/tkrzw-vcpkg-overlay
+[submodule "tkrzw"]
+	path = tkrzw
+	url = https://github.com/estraier/tkrzw

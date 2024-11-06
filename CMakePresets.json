@@ -1,0 +1,313 @@
+{
+  "version": 8,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 28,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "x64-freebsd",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "VCPKG_INSTALL_OPTIONS": "--debug;--allow-unsupported",
+        "VCPKG_APPLOCAL_DEPS": "OFF",
+        "VCPKG_VERBOSE": "ON",
+        "VCPKG_HOST_TRIPLET": "x64-freebsd",
+        "VCPKG_TARGET_TRIPLET": "x64-freebsd",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_VERBOSE_MAKEFILE": "ON"
+      },
+      "generator": "Ninja Multi-Config",
+      "toolchainFile": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "FreeBSD"
+      }
+    },
+    {
+      "name": "x64-linux",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "VCPKG_INSTALL_OPTIONS": "--debug;--allow-unsupported",
+        "VCPKG_APPLOCAL_DEPS": "OFF",
+        "VCPKG_VERBOSE": "ON",
+        "VCPKG_HOST_TRIPLET": "x64-linux",
+        "VCPKG_TARGET_TRIPLET": "x64-linux",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_VERBOSE_MAKEFILE": "ON"
+      },
+      "generator": "Ninja Multi-Config",
+      "toolchainFile": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      }
+    },
+    {
+      "name": "x64-windows",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "VCPKG_INSTALL_OPTIONS": "--debug;--allow-unsupported",
+        "VCPKG_APPLOCAL_DEPS": "OFF",
+        "VCPKG_VERBOSE": "ON",
+        "VCPKG_HOST_TRIPLET": "x64-windows",
+        "VCPKG_TARGET_TRIPLET": "x64-windows",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_VERBOSE_MAKEFILE": "ON"
+      },
+      "generator": "Visual Studio 17 2022",
+      "toolchainFile": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "toolset": {
+        "value": "host=x64",
+        "strategy": "external"
+      }
+    },
+    {
+      "name": "x64-windows-static",
+      "inherits": ["x64-windows"],
+      "cacheVariables": {
+	"VCPKG_HOST_TRIPLET": "x64-windows-static",
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "x64-freebsd-release",
+      "configurePreset": "x64-freebsd",
+      "configuration": "Release",
+      "condition": {
+          "type": "equals",
+          "lhs": "${hostSystemName}",
+          "rhs": "FreeBSD"
+      }
+    },
+    {
+      "name": "x64-freebsd-debug",
+      "inherits": ["x64-freebsd-release"],
+      "configuration": "Debug"
+    },
+    {
+      "name": "x64-linux-release",
+      "configurePreset": "x64-linux",
+      "configuration": "Release",
+      "condition": {
+          "type": "equals",
+          "lhs": "${hostSystemName}",
+          "rhs": "Linux"
+      }
+    },
+    {
+      "name": "x64-linux-debug",
+      "inherits": ["x64-linux-release"],
+      "configuration": "Debug"
+    },
+    {
+      "name": "x64-windows-release",
+      "configurePreset": "x64-windows",
+      "configuration": "Release",
+      "condition": {
+          "type": "equals",
+          "lhs": "${hostSystemName}",
+          "rhs": "Windows"
+      }
+    },
+    {
+      "name": "x64-windows-debug",
+      "inherits": ["x64-windows-release"],
+      "configuration": "Debug"
+    },
+    {
+      "name": "x64-windows-static-release",
+      "inherits": ["x64-windows-release"],
+      "configurePreset": "x64-windows-static"
+    },
+    {
+      "name": "x64-windows-static-debug",
+      "inherits": ["x64-windows-release"],
+      "configurePreset": "x64-windows-static",
+      "configuration": "Debug"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "x64-freebsd-release",
+      "configurePreset": "x64-freebsd",
+      "configuration": "Release",
+      "condition": {
+          "type": "equals",
+          "lhs": "${hostSystemName}",
+          "rhs": "FreeBSD"
+      },
+      "output": {
+        "verbosity": "extra"
+      }
+    },
+    {
+      "name": "x64-freebsd-debug",
+      "inherits": ["x64-freebsd-release"],
+      "configuration": "Debug"
+    },    {
+      "name": "x64-linux-release",
+      "configurePreset": "x64-linux",
+      "configuration": "Release",
+      "condition": {
+          "type": "equals",
+          "lhs": "${hostSystemName}",
+          "rhs": "Linux"
+      },
+      "output": {
+        "verbosity": "extra"
+      }
+    },
+    {
+      "name": "x64-linux-debug",
+      "inherits": ["x64-linux-release"],
+      "configuration": "Debug"
+    },
+    {
+      "name": "x64-windows-release",
+      "configurePreset": "x64-windows",
+      "configuration": "Release",
+      "condition": {
+          "type": "equals",
+          "lhs": "${hostSystemName}",
+          "rhs": "Windows"
+      },
+      "output": {
+        "verbosity": "extra"
+      }
+    },
+    {
+      "name": "x64-windows-debug",
+      "inherits": ["x64-windows-release"],
+      "configuration": "Debug"
+    },
+    {
+      "name": "x64-windows-static-release",
+      "inherits": ["x64-windows-release"],
+      "configurePreset": "x64-windows-static"
+    },
+    {
+      "name": "x64-windows-static-debug",
+      "inherits": ["x64-windows-release"],
+      "configurePreset": "x64-windows-static",
+      "configuration": "Debug"
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "x64-freebsd-release",
+      "configurations": ["Release"],
+      "configurePreset": "x64-freebsd",
+      "condition": {
+          "type": "equals",
+          "lhs": "${hostSystemName}",
+          "rhs": "FreeBSD"
+      }
+    },
+    {
+      "name": "x64-freebsd-debug",
+      "inherits": ["x64-freebsd-release"],
+      "configurations": ["Debug"]
+    },
+    {
+      "name": "x64-linux-release",
+      "configurations": ["Release"],
+      "configurePreset": "x64-linux",
+      "condition": {
+          "type": "equals",
+          "lhs": "${hostSystemName}",
+          "rhs": "Linux"
+      }
+    },
+    {
+      "name": "x64-linux-debug",
+      "inherits": ["x64-linux-release"],
+      "configurations": ["Debug"]
+    },
+    {
+      "name": "x64-windows-release",
+      "configurations": ["Release"],
+      "configurePreset": "x64-windows",
+      "condition": {
+          "type": "equals",
+          "lhs": "${hostSystemName}",
+          "rhs": "Windows"
+      },
+      "generators": ["ZIP"]
+    },
+    {
+      "name": "x64-windows-debug",
+      "configurations": ["Debug"],
+      "inherits": ["x64-windows-release"]
+    },
+    {
+      "name": "x64-windows-static-release",
+      "inherits": ["x64-windows-release"],
+      "configurePreset": "x64-windows-static"
+    },
+    {
+      "name": "x64-windows-static-debug",
+      "inherits": ["x64-windows-release"],
+      "configurePreset": "x64-windows-static",
+      "configurations": ["Debug"]
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "x64-freebsd-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "x64-freebsd"
+        },
+        {
+          "type": "build",
+          "name": "x64-freebsd-release"
+        },
+        {
+          "type": "test",
+          "name": "x64-freebsd-release"
+        },
+        {
+          "type": "package",
+          "name": "x64-freebsd-release"
+        }
+      ]
+    },
+    {
+      "name": "x64-windows-static",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "x64-windows-static"
+        },
+        {
+          "type": "build",
+          "name": "x64-windows-static-debug"
+        },
+        {
+          "type": "test",
+          "name": "x64-windows-static-debug"
+        },
+        {
+          "type": "package",
+          "name": "x64-windows-static-debug"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "tkrzw-consumer-example",
+  "version-string": "0.0.1",
+  "dependencies": [
+    {
+      "name": "tkrzw",
+      "default-features": false
+    }
+  ]
+}
