@@ -8,6 +8,7 @@ on:
 jobs:
   vcpkg:
     strategy:
+      fail-fast: false
       matrix:
         buildtype: [debug, release]
         triplet: [x64-windows-static, x64-linux]
