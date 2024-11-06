@@ -9,14 +9,14 @@ jobs:
   vcpkg:
     strategy:
       matrix:
-        build-type: [debug, release]
+        buildtype: [debug, release]
         include:
          - triplet: x64-windows-static
            runs-on: windows-latest
          - triplet: x64-linux
            runs-on: ubuntu-latest
 
-    name: VCPKG using ${{ matrix.cmake-preset }} in ${{ matrix.build-type }} mode
+    name: VCPKG using ${{ matrix.cmake-preset }} in ${{ matrix.buildtype }} mode
     
     runs-on: ${{ matrix.runs-on }}
 
@@ -34,22 +34,23 @@ jobs:
         
       - name: Build
         run: |
-          cmake --preset ${{ matrix.triplet }}-${{ matrix.build-type }}
-          cmake --build --preset ${{ matrix.triplet }}-${{ matrix.build-type }}
+          cmake --preset ${{ matrix.triplet }}-${{ matrix.buildtype }}
+          cmake --build --preset ${{ matrix.triplet }}-${{ matrix.buildtype }}
         working-directory: ${{ github.workspace }}
       
       - name: Test
         run: |
-          ctest --preset ${{ matrix.triplet }}-${{ matrix.build-type }}
+          ctest --preset ${{ matrix.triplet }}-${{ matrix.buildtype }}
         working-directory: ${{ github.workspace }}
         
       - name: Bundle
         run: |
-          cpack --preset ${{ matrix.triplet }}-${{ matrix.build-type }}
+          cpack --preset ${{ matrix.triplet }}-${{ matrix.buildtype }}
         working-directory: ${{ github.workspace }}
 
       - name: Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: examples-${{ matrix.triplet }}-${{ matrix.build-type }}
+          name: examples-${{ matrix.triplet }}-${{ matrix.buildtype }}
           path: ${{ github.workspace }}/build/tkrzwVcpkgIntegration-*.*
+
