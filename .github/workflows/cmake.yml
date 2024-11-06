@@ -26,7 +26,8 @@ jobs:
     steps:
       - name: "Clone Repository"
         uses: actions/checkout@v4
-	submodules: recursive
+        with:
+          submodules: recursive
 
       - name: "Setup Ninja"
         uses: seanmiddleditch/gha-setup-ninja@master
